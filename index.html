@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <title>PAC-MAN</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:#000;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      font-family:'Press Start 2P', monospace;
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    #modeScreen {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:30px;
+    }
+    #modeScreen h1 {
+      color:#FFD700;
+      font-size:2.5rem;
+      letter-spacing:6px;
+      text-shadow:0 0 20px #FFD700, 0 0 40px #FF8C00;
+    }
+    #modeScreen p {
+      color:#fff;
+      font-size:0.65rem;
+      margin-top:-10px;
+      opacity:0.7;
+      letter-spacing:2px;
+    }
+    .mode-buttons {
+      display:flex;
+      gap:30px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .mode-btn {
+      background:none;
+      border:3px solid #1a8cff;
+      color:#1a8cff;
+      padding:18px 32px;
+      font-family:'Press Start 2P', monospace;
+      font-size:0.85rem;
+      cursor:pointer;
+      transition:all 0.15s;
+      letter-spacing:2px;
+    }
+    .mode-btn:hover {
+      background:#1a8cff;
+      color:#000;
+      box-shadow:0 0 18px #1a8cff;
+    }
+    .mode-desc {
+      font-size:0.5rem;
+      color:#aaa;
+      text-align:center;
+      line-height:1.8em;
+      max-width:320px;
+    }
+
+    #gameWrapper { display:none; flex-direction:column; align-items:center; }
+
+    #hud {
+      width:560px;
+      display:flex;
+      justify-content:space-between;
+      padding:6px 12px;
+      color:#fff;
+      font-size:0.6rem;
+      letter-spacing:2px;
+    }
+    #hud .score-block { display:flex; flex-direction:column; align-items:center; gap:4px; }
+    #hud .label { color:#fff; font-size:0.45rem; }
+    #hud .value { color:#fff; font-size:0.75rem; }
+
+    canvas { background:#000; display:block; }
+
+    #lives {
+      width:560px;
+      display:flex;
+      gap:8px;
+      padding:4px 12px;
+    }
+
+    #multiControls {
+      color:#888;
+      font-size:0.42rem;
+      margin-top:4px;
+      letter-spacing:1px;
+      text-align:center;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mode selection screen -->
+<div id="modeScreen">
+  <h1>PAC-MAN</h1>
+  <p>ENHANCED EDITION</p>
+  <div class="mode-buttons">
+    <button class="mode-btn" id="btnSingle">1P SINGLE<br><br><span style="font-size:0.45rem;color:#aaa">WASD / ARROWS<br>to move PAC-MAN</span></button>
+    <button class="mode-btn" id="btnMulti">2P MULTI<br><br><span style="font-size:0.45rem;color:#aaa">WASD: PAC-MAN<br>ARROWS: GHOST</span></button>
+  </div>
+</div>
+
+<!-- Game area -->
+<div id="gameWrapper">
+  <div id="hud">
+    <div class="score-block">
+      <span class="label">1UP</span>
+      <span class="value" id="score1up">00</span>
+    </div>
+    <div class="score-block">
+      <span class="label">HIGH SCORE</span>
+      <span class="value" id="highScore">00</span>
+    </div>
+    <div class="score-block">
+      <span class="label" id="p2label"></span>
+      <span class="value" id="score2up"></span>
+    </div>
+  </div>
+  <canvas id="gameCanvas" width="560" height="620"></canvas>
+  <div id="lives"></div>
+  <div id="multiControls"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
